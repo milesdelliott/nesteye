@@ -57,7 +57,7 @@ def init_camera():
         })
 
         output_buffer = StreamingOutput()
-        encoder = MJPEGEncoder(q=95)  # Near-maximum quality; lower resolution compensates for bandwidth
+        encoder = MJPEGEncoder(bitrate=10000000)  # 15 Mbps — high quality at 1280x960
 
         camera.start_recording(encoder, FileOutput(output_buffer))
         camera_ready = True
