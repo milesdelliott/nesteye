@@ -41,7 +41,7 @@ def init_camera():
 
         # Configure for high quality
         config = camera.create_video_configuration(
-            main={"size": (1920, 1440), "format": "RGB888"},
+            main={"size": (1280, 960), "format": "RGB888"},
             encode="main",
             lores={"size": (640, 480), "format": "YUV420"}
         )
@@ -57,7 +57,7 @@ def init_camera():
         })
 
         output_buffer = StreamingOutput()
-        encoder = MJPEGEncoder(bitrate=5000000)  # 5 Mbps
+        encoder = MJPEGEncoder(q=95)  # Near-maximum quality; lower resolution compensates for bandwidth
 
         camera.start_recording(encoder, FileOutput(output_buffer))
         camera_ready = True
@@ -72,13 +72,13 @@ def init_camera():
 def generate_frames():
     """Generator for streaming video frames"""
     while True:
-        if output_buffer and output_buffer.frame:
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n'
-                   b'Content-Length: ' + str(len(output_buffer.frame)).encode() + b'\r\n'
-                   b'\r\n' + output_buffer.frame + b'\r\n')
-        else:
-            time.sleep(0.01)
+        with output_buffer.condition:
+            output_buffer.condition.wait()
+            frame = output_buffer.frame
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n'
+               b'Content-Length: ' + str(len(frame)).encode() + b'\r\n'
+               b'\r\n' + frame + b'\r\n')
 
 @app.route('/')
 def index():
@@ -114,7 +114,7 @@ def get_camera_settings():
         try:
             controls = camera.camera_controls
             return jsonify({
-                'resolution': '1920x1440',
+                'resolution': '1280x960',
                 'framerate': 30,
                 'encoding': 'MJPEG'
             })
