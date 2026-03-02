@@ -41,23 +41,23 @@ def init_camera():
 
         # Configure for high quality
         config = camera.create_video_configuration(
-            main={"size": (1280, 960), "format": "RGB888"},
-            encode="main",
-            lores={"size": (640, 480), "format": "YUV420"}
+            main={"size": (1024, 768), "format": "RGB888"},
+            encode="main"
         )
         camera.configure(config)
 
         # Set camera options for autofocus and auto exposure
         camera.set_controls({
-            "AfMode": 0,       # Continuous autofocus
-            "FrameRate": 30,
+            "AfMode": 2,       # Continuous autofocus
+            "FrameRate": 15,
+             "LensPosition": 0.0,
             "AeEnable": True,  # Auto exposure
             "AeExposureMode": 2,  # Long exposure mode (better for dark environments)
             "Brightness": 0.2,    # Slight brightness boost
         })
 
         output_buffer = StreamingOutput()
-        encoder = MJPEGEncoder(bitrate=10000000)  # 15 Mbps — high quality at 1280x960
+        encoder = MJPEGEncoder(bitrate=5000000)  # 15 Mbps — high quality at 1280x960
 
         camera.start_recording(encoder, FileOutput(output_buffer))
         camera_ready = True
