@@ -47,12 +47,13 @@ def init_camera():
         )
         camera.configure(config)
 
-        # Set camera options for autofocus
+        # Set camera options for autofocus and auto exposure
         camera.set_controls({
-            "AfMode": 0,  # Continuous autofocus
+            "AfMode": 0,       # Continuous autofocus
             "FrameRate": 30,
-            "ExposureTime": 10000,
-            "AnalogueGain": 1.0
+            "AeEnable": True,  # Auto exposure
+            "AeExposureMode": 2,  # Long exposure mode (better for dark environments)
+            "Brightness": 0.2,    # Slight brightness boost
         })
 
         output_buffer = StreamingOutput()
