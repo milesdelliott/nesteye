@@ -42,7 +42,7 @@ def init_camera():
         # Configure for high quality
         config = camera.create_video_configuration(
             main={"size": (1920, 1440), "format": "RGB888"},
-            encode="mjpeg",
+            encode="main",
             lores={"size": (640, 480), "format": "YUV420"}
         )
         camera.configure(config)
