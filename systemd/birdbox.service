@@ -1,0 +1,17 @@
+[Unit]
+Description=Bird Box Camera Flask Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=miles
+WorkingDirectory=/home/miles/nesteye/app
+ExecStart=/usr/bin/python3 /home/miles/nesteye/app/app.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
