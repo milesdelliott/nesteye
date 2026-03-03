@@ -4,11 +4,20 @@
   padding: 0;
 }
 
+:root {
+	--colorWhite: #fbf8f4;
+	--colorYellow: #ffd93d;
+	--colorOrange: #ff8400;
+	--colorDarkOrange: #d66f00;
+	--colorBlue: #0068a8;
+	--colorBrown: #4f200d;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+  background: var(--colorWhite, #fbf8f4);
   min-height: 100vh;
-  color: #fff;
+  color: var(--colorBrown, #4f200d);
 }
 
 .app {
@@ -29,17 +38,15 @@ body {
 }
 
 .subtitle {
-  color: rgba(255, 255, 255, 0.7);
   margin-top: 0.25rem;
   font-size: 1rem;
 }
 
 /* Card */
 .card {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--colorWhite);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--colorBrown);
   padding: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -54,7 +61,6 @@ body {
 .stream-img {
   width: 100%;
   display: block;
-  border-radius: 16px;
 }
 
 .stream-offline {
@@ -63,7 +69,6 @@ body {
   align-items: center;
   justify-content: center;
   height: 300px;
-  color: rgba(255, 255, 255, 0.5);
   gap: 0.75rem;
   font-size: 1rem;
 }
@@ -78,7 +83,6 @@ body {
   right: 0.75rem;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
   border-radius: 8px;
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
@@ -145,7 +149,6 @@ body {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.5);
 }
 
 .stat-value {
@@ -161,10 +164,8 @@ body {
 }
 
 .controls button {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border-radius: 10px;
+  background: var(--colorYellow);
+  border: 1px solid var(--colorBrown);
   padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
   cursor: pointer;
@@ -172,7 +173,7 @@ body {
 }
 
 .controls button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--colorYellow);
 }
 
 .controls button:disabled {
@@ -185,7 +186,6 @@ body {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 1rem;
 }
 
@@ -197,5 +197,5 @@ body {
 }
 
 .info-grid span:nth-child(odd) {
-  color: rgba(255, 255, 255, 0.5);
+  color: #000;
 }

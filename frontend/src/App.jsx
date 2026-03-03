@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import VideoStream from './components/VideoStream'
 import StatusBar from './components/StatusBar'
 import Controls from './components/Controls'
-import SystemInfo from './components/SystemInfo'
 
 export default function App() {
   const [status, setStatus] = useState(null)
@@ -25,14 +24,12 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Bird Box Camera</h1>
-        <p className="subtitle">Live Wildlife Monitor</p>
+        <h1>Bird.Pictures LIVE</h1>
       </header>
       <main className="app-main">
         <VideoStream />
         <StatusBar status={status} />
         <Controls onRefresh={fetchStatus} />
-        <SystemInfo />
       </main>
     </div>
   )

@@ -25,7 +25,7 @@ export default function VideoStream() {
         />
       )}
       <button className="fullscreen-btn" onClick={handleFullscreen}>
-        ⛶ Fullscreen
+        Fullscreen
       </button>
     </div>
   )
