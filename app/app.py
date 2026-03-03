@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, Response, jsonify
+from flask import Flask, Response, jsonify
 from flask_cors import CORS
 import threading
 import time
@@ -10,7 +10,7 @@ import io
 import os
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
 CORS(app)
 
 # Global variables
@@ -82,8 +82,8 @@ def generate_frames():
 
 @app.route('/')
 def index():
-    """Serve the main web interface"""
-    return render_template('index.html')
+    """Serve the React app"""
+    return app.send_static_file('index.html')
 
 @app.route('/video_feed')
 def video_feed():
